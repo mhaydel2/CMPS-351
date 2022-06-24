@@ -1,0 +1,59 @@
+.data
+array: .word 3
+var1: .asciiz "Input the first number: "
+var2: .asciiz "\nInput the second number: "
+var3: .asciiz "\nInput the third number: "
+outp: .asciiz "\nThe number in slot array 1 is: "
+
+.text
+main:
+	la $t0, array		#assign array
+
+	#prompt 1
+	la $a0, var1		#assign print value
+	li $v0, 4		#assign print code interpreter
+	syscall
+
+	li $v0, 5		#assign print code interpreter for user input
+	syscall
+	
+	sw $v0, 0($t0)		#assign input read to index in array ; 0 = index 0
+
+	#prompt2
+	la $a0, var2		#assign print value
+	li $v0, 4		#assign print code interpreter
+	syscall
+	
+	li $v0, 5		#assign print code interpreter for user input
+	syscall
+	
+	sw $v0, 4($t0)		#assign input read to index in array ; 4 = index 1
+
+	#prompt 3
+	la $a0, var3		#assign print value
+	li $v0, 4		#assign print code interpreter
+	syscall
+
+	li $v0, 5		#assign print code interpreter for user input
+	syscall
+	
+	sw $v0, 8($t0)		#assign input read to index in array ; 8 = index 2
+
+
+	#Display outp
+	la $a0, outp		#assign print value
+	li $v0, 4		#assign print code interpreter
+	syscall
+
+	#change index to 1 for array[1]
+	lw $a0, 4($t0)		#assign print value to index in array ; 4 = index 1
+	li $v0, 1		#assign print code interpreter
+	syscall
+
+	#end the program
+	li $v0, 10
+	syscall
+
+
+
+

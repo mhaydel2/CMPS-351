@@ -1,0 +1,2 @@
+I certify that this code (p1-p4 and alternatives) is entirely my own besides code given by the 
+instructor or code that contains standard practices.

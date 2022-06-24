@@ -1,0 +1,8 @@
+I have the Windows 10 Home Version 21H2.Windows Logo Key + R > wsreset.exe = nothing happens after a minute
+Windows Logo Key + R > wsreset.exe = nothing happens after a minute
+Trying to run SFC and DISM to check for any system errors and corrupted files:
+"Windows Resource Protection found corrupt files and successfully repaired them.
+For online repairs, details are included in the CBS log file located at
+windir\Logs\CBS\CBS.log. For example C:\Windows\Logs\CBS\CBS.log. For offline
+repairs, details are included in the log file provided by the /OFFLOGFILE flag."
+Restarted and Windows Store still does not open and through Settings > Apps & Features > Microsoft Store > Reset, it still takes a long time.

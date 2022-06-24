@@ -1,0 +1,37 @@
+.data
+prompt: .asciiz "Enter n: "
+output: .asciiz "\n1^2 + 2^2 + ... n^2 = "
+
+.text
+main:
+	li $t0, 0 	# n = 0
+	li $t1, 0	# sum = 0
+	li $t2, 1	# i = 1
+	la $a0, prompt
+	li $v0, 4	#print prompt
+	syscall
+
+	li $v0, 5	# read int
+	syscall
+
+	move $t0, $v0	# n ($t0) = user input
+
+loop:
+	bgt $t2, $t0, end	# if t2 (i) == t0 (n : user input) loop ends
+	mul $t3, $t2, $t2	# i*i
+	add $t1, $t1, $t3	# sum = sum + i*i
+	addi $t2, $t2, 1	# i = i + 1 / i++
+	j loop
+
+end:
+	la $a0, output		# assign print value
+	li $v0, 4		# print output
+	syscall
+
+	move $a0, $t1		# assign print value to print answer
+	li $v0, 1
+	syscall
+
+	# end program
+	li $v0, 10
+	syscall

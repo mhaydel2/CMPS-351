@@ -1,0 +1,45 @@
+.data
+prompt: .asciiz "Input the size of the array: "
+
+.text
+main:
+	# print prompt
+	la $a0, prompt
+	li $v0, 4
+	syscall
+
+	# assign user input
+	li $v0, 5
+	syscall
+	move $s0, $v0		# $s0 = user input
+
+	# allocate on the stack
+	mul $t0, $s0, 4		# $t0 = user input * 4
+	sub $sp, $sp, $t0	# $sp = $sp - $t0 (user input *4)
+
+	li $t1, 0		# i = 0 (counter for loop)
+
+loop:
+	beq $t1, $s0, end	# i = 0; i == user input; i++
+	sll $t2, $t1, $sp
+	add $t2, $t1, $sp
+	sw $t2, 0($sp)
+
+	# print position in array
+	move $a0, $t1
+	li $v0, 1
+	syscall
+
+	
+	li $a0, 32		# print space, 32 is ASCII code for space
+	li $v0, 11		# syscall number for printing character
+	syscall
+
+	addi $t1, $t1, 1	# increase 'i' counter by 1
+	j loop
+
+end: 
+	# free array
+	add $sp, $sp, $t0
+	li $v0, 10
+	syscall
